@@ -1,7 +1,7 @@
 package com.eis.alertasApp.controllers;
 
 import com.eis.alertasApp.models.Servicio;
-import com.eis.alertasApp.repositories.ServicioRepository;
+import com.eis.alertasApp.services.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +11,36 @@ import java.util.Optional;
 @RestController
 public class ServicioController {
     @Autowired
-    private ServicioRepository serviciorepository;
+    private ServicioService servicioService;
+
     @GetMapping("/servicios")
     public List<Servicio> getAll()
     {
-        return serviciorepository.findAll();
+        return servicioService.getAllServicios();
     }
+
     @GetMapping("/servicios/{id}")
-    public Optional<Servicio> getById(@PathVariable(value="id") Integer id)
+    public Optional<Servicio> getServicioById(@PathVariable(value="id") Integer id)
     {
-        return serviciorepository.findById(id);
+        return servicioService.getServicioById(id);
     }
+
     @PostMapping("/servicios")
-    public String save(@RequestBody Servicio s)
+    public String saveServicio(@RequestBody Servicio servicio)
     {
-        serviciorepository.save(s);
-        return "ok";
+        servicioService.saveServicio(servicio);
+        return "Exito del registro";
+    }
+
+    @DeleteMapping("/servicios/{id}")
+    public String deleteUser(@PathVariable(value="id") Integer id) {
+        servicioService.deleteServicioById(id);
+        return "Registro eliminado correctamente";
+    }
+
+    @PutMapping("/servicios/{id}")
+    public String updateServicio(@PathVariable Integer id, @RequestBody Servicio updatedServicio) {
+        servicioService.updateUser(id, updatedServicio);
+        return "El registro ha sido actualizado";
     }
 }
