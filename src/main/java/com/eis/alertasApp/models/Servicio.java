@@ -2,16 +2,13 @@ package com.eis.alertasApp.models;
 
 import jdk.jfr.Enabled;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
  * @author alejo
  */
-@Enabled
+@Entity
 @Table(name="servicios")
 public class Servicio {
     @Id
@@ -51,4 +48,5 @@ public class Servicio {
     public void setPeriodicidad(String periodicidad) {
         this.periodicidad = periodicidad;
     }
+
 }
