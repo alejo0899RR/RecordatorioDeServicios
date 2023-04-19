@@ -32,8 +32,8 @@ public class ServicioService {
         servicioRepository.deleteById(id);
     }
 
-    public Servicio updateUser(Integer id, Servicio updatedServicio) {
-        Servicio existingServicio = servicioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+    public Servicio updateService(Integer id, Servicio updatedServicio) {
+        Servicio existingServicio = servicioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("servicio not found with id " + id));
         existingServicio.setId_servicio(id);
         existingServicio.setNombre(updatedServicio.getNombre());
         existingServicio.setPeriodicidad(updatedServicio.getPeriodicidad());

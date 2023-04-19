@@ -33,14 +33,14 @@ public class ServicioController {
     }
 
     @DeleteMapping("/servicios/{id}")
-    public String deleteUser(@PathVariable(value="id") Integer id) {
+    public String deleteServicice(@PathVariable(value="id") Integer id) {
         servicioService.deleteServicioById(id);
         return "Registro eliminado correctamente";
     }
 
     @PutMapping("/servicios/{id}")
     public String updateServicio(@PathVariable Integer id, @RequestBody Servicio updatedServicio) {
-        servicioService.updateUser(id, updatedServicio);
+        servicioService.updateService(id, updatedServicio);
         return "El registro ha sido actualizado";
     }
 }
