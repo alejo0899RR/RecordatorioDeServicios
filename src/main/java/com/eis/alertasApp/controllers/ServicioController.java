@@ -1,5 +1,6 @@
 package com.eis.alertasApp.controllers;
 
+import com.eis.alertasApp.Exception.ResourceNotFoundException;
 import com.eis.alertasApp.models.Servicio;
 import com.eis.alertasApp.services.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class ServicioController {
     @GetMapping("/servicios/{id}")
     public Optional<Servicio> getServicioById(@PathVariable(value="id") Integer id)
     {
-        return servicioService.getServicioById(id);
+        return Optional.ofNullable(servicioService.getServicioById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Servicio no existente en la base de datos con el id " + id)));
     }
 
     @PostMapping("/servicios")

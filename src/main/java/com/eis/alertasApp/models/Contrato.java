@@ -12,6 +12,7 @@ public class Contrato {
     @ManyToOne
     @JoinColumn(name = "id_servicio")
     private Servicio servicio;
+
     int valor;
     int fecha;
 
